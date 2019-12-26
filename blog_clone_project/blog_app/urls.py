@@ -4,4 +4,10 @@ from blog_app import views
 app_name = 'blog_app'
 
 urlpatterns = [
+    url(r'^post_list/$', views.PostListView.as_view(), name='post_list'),
+    url(r'^post_list_draft/$', views.PostListDraft.as_view(), name='post_list_draft'),
+    url(r'^post_list/(?P<pk>\+d)/$', views.PostDetailView.as_view(), name='post_detail'),
+    url(r'^post_list/post_create/$', views.PostCreateView.as_view(), name='post_create'),
+    url(r'^post_list/(?P<pk>\+d)/post_detail/$', views.PostUpdateView.as_view(), name='post_update'),
+    url(r'^post_list/(?P<pk>\+d)/post_delete/$', views.PostDeleteView.as_view(), name='post_delete'),
 ]
