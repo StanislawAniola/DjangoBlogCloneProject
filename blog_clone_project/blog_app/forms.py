@@ -23,5 +23,6 @@ class UserCommentForm(forms.ModelForm):
         fields = ['comment_author', 'comment_text']
 
         widgets = {
+            'comment_author': forms.TextInput(attrs={'class': 'group-control'}),
             'comment_text': forms.Textarea(attrs={'class': 'group-control'}),
         }

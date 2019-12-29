@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+    {% block head_primary %}Posts List{% endblock %}
+    
+    {% block head_sub %}
+        {% if user.is_authenticated %}
+            <p>Welcome back {{ user.username }}</p>
+        {% else %}
+            List of all posts
+        {% endif %}
+    {% endblock %}
+    
+    {% if user.is_authenticated %}
+        {% block button_content %}
+            <!-- CREATE POST -->
+        
+        {% endblock %}
+    {% endif %}
+
+    {% block content %}
+        {% block group_content %}
+            <ol class="list-group list-group-flush">
+                {% for post in post_list %}
+                    <li class="list-group-item shadow-sm group_list_element">
+                        <div class="group_link_list_box">
+                            <div class="group_link_list_box_major">
+                                <a class="group_link_list" href="#">{{ post.post_title }}</a>
+                            </div>
+                        </div>
+                        <p class="group_description_list">{{ post.author }}</p>
+                        <div class="">
+                            <div class="col-md-4">
+                                comment{{ post.comment_belong.count|pluralize }}:
+                                <span>{{ post.comment_belong.count }}</span>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endblock %}
+    {% endblock %}
+
+            <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->

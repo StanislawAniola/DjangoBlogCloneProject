@@ -10,38 +10,38 @@ from django.urls import reverse
 class UserPostModel(models.Model):
 
     post_author = models.ForeignKey(User, on_delete=models.CASCADE)
-    post_title = models.TextField()
-    post_text = models.TextField()
+    post_title = models.TextField(max_length=264)
+    post_text = models.TextField(max_length=264)
 
-    post_creation_date = models.DateTimeField(default=timezone.now())
+    post_creation_date = models.DateTimeField(default=timezone.now)
     post_published_date = models.DateTimeField(blank=True, null=True)
 
     def publish_post(self):
         self.post_published_date = timezone.now()
         self.save()
 
-    def approved_comment(self):
+    def view_approved_comment(self):
         return self.comment_belong.filter(comment_approved=True)
+
+    def get_absolute_url(self):
+        return reverse('blog_app:post_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.post_title
-
-    def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
 
 
 class UserCommentModel(models.Model):
 
     comment_belong = models.ForeignKey(UserPostModel, related_name='comment_belong', on_delete=models.CASCADE)
 
-    comment_author = models.CharField()
-    comment_text = models.TextField()
+    comment_author = models.CharField(max_length=264)
+    comment_text = models.TextField(max_length=264)
 
-    comment_creation_date = models.DateTimeField(default=timezone.now())
+    comment_creation_date = models.DateTimeField(default=timezone.now)
     comment_approved = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('comment_list')
+        return reverse('blog_app:comment_list')
 
     def comment_approve(self):
         self.comment_approved = True

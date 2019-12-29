@@ -1,0 +1,213 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+html body {
+  font-family: 'Monoton', cursive;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777; 
+
+  height: 80vh;
+  background-image: url(../img/Fis_Ikr_crop-cutout.png);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: top 4em left 3em;
+  }
+  
+
+.group_list_element{
+  background-color: rgba(255, 255, 255, 0) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
+  backdrop-filter: saturate(10%) blur(1.25em) !important;
+  margin-bottom: 2em !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  border-radius: .25rem !important;
+
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.group_description_list{
+  font-size: 1em;
+  letter-spacing: 0.3em;
+}
+
+.group_link_list:link,
+.group_link_list:visited{
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  font-size: 1.5em;
+}
+
+.group_link_list:hover{
+  display: block;
+}
+
+.group_link_list:active{
+  display: block;
+}
+
+.group_link_list_box_major:hover{
+  animation-name: moveInLeft;
+  transition: all 0.2s;
+  animation-delay: 0.1s;
+
+  box-sizing: content-box;
+}
+
+.group_link_list_box:hover{
+
+  animation-name: LetterSpacetBlink;
+  box-sizing: content-box;
+  text-align: center;
+
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.6s;
+  animation-delay: 3s;
+  transition: all 0.2s;
+
+  letter-spacing: 1em;
+}
+
+.overflow-hidden { overflow: hidden; }
+.header {
+  }
+
+.group_content{
+  box-sizing: content-box;
+  display: block;
+  padding: 1.78em;
+}
+
+.text-box {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  text-align: center;
+}
+
+.heading-primary {
+  color: black;
+  text-transform: none;
+
+  backface-visibility: hidden;
+  margin-bottom: 30px;
+  }
+
+.heading-primary-main {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  animation-name: moveInLeft;
+  animation-duration: 1.5s;
+  animation-delay: 0.2s;
+  animation-timing-function: ease-in-out;
+  }
+
+.heading-primary-sub {
+  display: block;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  animation-name: moveInRight;
+  animation-duration: 1.5s;
+  animation-delay: 0.1s;
+  animation-timing-function: ease-in-out;
+  }
+
+  /* BUTTONS */
+
+
+  .btn:link, 
+  .btn:visited {
+    text-decoration: none;
+    background-color: transparent;
+    color: black;
+    padding: 10px 30px;
+    display: inline-block;
+
+    -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
+    backdrop-filter: saturate(10%) blur(1.25em) !important;
+  }
+
+  .btn-outline-dark:hover{
+    background-color: rgb(0, 0, 0) !important;
+    color: white !important;
+    opacity: 0.9;
+    transition: 0.6s;
+  }
+
+
+  /* ANIMATIONS */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-6.25em); }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+    } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(6.25em); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes LetterSpacetBlink {
+  0% {
+    opacity: 0.1;
+    transform: translateX(-6.25em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(6.25em);
+  }
+  } 
+
+
+/*
+ * Custom translucent site header
+ */
+.site-header {
+  /* background-color: rgba(0, 0, 0, .89); */
+  -webkit-backdrop-filter: saturate(180%) blur(2.5em);
+  backdrop-filter: saturate(180%) blur(1.25em); }
+
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s; }
+
+.site-header a:hover {
+  color: black;
+  text-decoration: none; }
+
+/*
+ * Extra utilities
+ */
+.flex-equal > * {
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+  flex: 1; }
+
+@media (min-width: 48em) {
+  .flex-md-equal > * {
+    -ms-flex: 1;
+    -webkit-box-flex: 1;
+    flex: 1; } }
+
+.overflow-hidden {
+  overflow: hidden; }

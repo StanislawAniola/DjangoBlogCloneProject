@@ -32,7 +32,7 @@ class PostCreateView(CreateView):
     form_class = forms.UserPostForm
     template_name = 'blog_app/post_create_update.html'
 
-    redirect_field_name = reverse('blog_app:post_detail')
+    redirect_field_name = 'blog_app:post_detail'
 
 
 class PostUpdateView(UpdateView):
@@ -40,13 +40,15 @@ class PostUpdateView(UpdateView):
     form_class = forms.UserPostForm
     template_name = 'blog_app/post_create_update.html'
 
-    redirect_field_name = reverse('blog_app:blog_detail')
+    redirect_field_name = 'blog_app:post_detail'
 
 
 class PostDeleteView(DeleteView):
 
     model = models.UserPostModel
+    context_object_name = 'post_delete'
     template_name = 'blog_app/post_delete.html'
+
     success_url = reverse_lazy('blog_app:post_list')
 
 
@@ -60,13 +62,14 @@ class PostListDraftView(ListView):
         return models.UserPostModel.objects.filter(post_published_date__isnull=True).order_by('-post_created_date')
 
 
-#############__COMMENTS__##############
-
 def post_publish(request, pk):
     post_object = get_object_or_404(models.UserPostModel, pk=pk)
     post_object.publish_post()
     return redirect(reverse('blog_app:post_detail'), pk=models.UserPostModel.pk)
 
+#######################################
+#############__COMMENTS__##############
+#######################################
 
 
 def comment_add(request, pk):
@@ -82,7 +85,7 @@ def comment_add(request, pk):
             return redirect('blog_app:comment_add', pk=post_object.pk)
 
     comment_form = forms.UserPostForm(data=request.POST)
-    return  render(request, template_name='blog_app/comment_add.html', context={'comment_form': comment_form})
+    return render(request, template_name='blog_app/comment_add.html', context={'comment_form': comment_form})
 
 
 def comment_approve(request, pk):
@@ -98,5 +101,3 @@ def comment_delete(request, pk):
     comment_object = get_object_or_404(models.UserCommentModel, pk=pk)
     comment_object.delete()
     return redirect(reverse('blog_app:post_detail'), pk=post_pk)
-
-

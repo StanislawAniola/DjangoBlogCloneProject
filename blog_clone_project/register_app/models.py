@@ -6,4 +6,4 @@ from django.contrib.auth.models import User
 
 class UserCreationModel(models.Model):
 
-    user_model = models.OneToOneField(model=User, on_delete=models.CASCADE)
+    user_model = models.OneToOneField(User, on_delete=models.CASCADE)
