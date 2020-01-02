@@ -11,8 +11,10 @@
     
     {% if user.is_authenticated %}
         {% block button_content %}
-            <!-- CREATE POST -->
-        
+            {% if user.is_authenticated %}
+                <!-- CREATE POST -->
+                <a class="btn btn-outline-dark" href="{% url 'blog_app:post_create' %}">Create post</a>
+            {% endif %}
         {% endblock %}
     {% endif %}
 
@@ -23,15 +25,14 @@
                     <li class="list-group-item shadow-sm group_list_element">
                         <div class="group_link_list_box">
                             <div class="group_link_list_box_major">
-                                <a class="group_link_list" href="#">{{ post.post_title }}</a>
+                                <a class="group_link_list" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
                             </div>
                         </div>
-                        <p class="group_description_list">{{ post.author }}</p>
                         <div class="">
-                            <div class="col-md-4">
-                                comment{{ post.comment_belong.count|pluralize }}:
-                                <span>{{ post.comment_belong.count }}</span>
-                            </div>
+                            comment{{ post.related_comment_belong.count|pluralize }}:
+                            <span>{{ post.related_comment_belong.count }}</span>
+                            <p class="group_description_list">author:{{ post.post_author }}</p>
+                            <p class="group_description_list">published date:{{ post.post_published_date|date:"Y M d" }}</p>
                         </div>
                     </li>
                 {% endfor %}

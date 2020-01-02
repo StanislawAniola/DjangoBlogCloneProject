@@ -6,11 +6,11 @@
 }
 
 html body {
-  font-family: 'Monoton', cursive;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
-  color: #777; 
+  color: black;
 
   height: 80vh;
   background-image: url(../img/Fis_Ikr_crop-cutout.png);
@@ -19,6 +19,9 @@ html body {
   background-position: top 4em left 3em;
   }
   
+.position-relative{
+    /* font-family: 'Monoton', cursive; */
+}
 
 .group_list_element{
   background-color: rgba(255, 255, 255, 0) !important;
@@ -37,7 +40,10 @@ html body {
 
 .group_description_list{
   font-size: 1em;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.15em;
+}
+
+.group_description_list_div{
 }
 
 .group_link_list:link,
@@ -101,7 +107,9 @@ html body {
   text-transform: none;
 
   backface-visibility: hidden;
-  margin-bottom: 30px;
+
+  padding-top: 3em;
+  padding-bottom: 4em;
   }
 
 .heading-primary-main {

@@ -16,7 +16,7 @@ class PostListView(ListView):
     context_object_name = 'post_list'
     template_name = 'blog_app/post_list.html'
 
-    def get_quryset(self):
+    def get_queryset(self):
         return models.UserPostModel.objects.filter(post_published_date__lte=timezone.now()).order_by('-post_published_date')
 
 

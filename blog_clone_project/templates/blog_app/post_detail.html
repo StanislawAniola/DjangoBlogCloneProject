@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+    {% block head_primary %}{{ post_detail.post_title }}{% endblock %}
+    
+    {% block head_sub %}
+    {% endblock %}
+
+    {% if user.is_authenticated %}
+        {% block button_content %}
+            <!-- CREATE POST -->
+            <a class="btn btn-outline-dark" href="#">Write a comment.</a>
+        {% endblock %}
+    {% endif %}
+
+    {% block content %}
+          <div class="group_list_element p-3 p-md-5 rounded">
+            <div class="">
+              <p class="lead my-3">{{ post_detail.post_text }}</p>
+                <p>author: {{ post_detail.post_author }}</p>
+            </div>
+          </div>
+        {% block group_content %}
+                <ol class="list-group list-group-flush">
+                    {% for comment in post_detail.related_comment_belong.objects.all %}
+                        {% if comment.comment_approved %}
+                            <li class="list-group-item shadow-sm group_list_element">
+                                <div class="group_link_list_box">
+                                    <div class="group_link_list_box_major">
+                                        <a class="group_link_list" href="#">{{ comment.comment_text }}</a>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <p class="group_description_list">author:{{ comment.comment_author }}</p>
+                                    <p class="group_description_list">published date:{{ comment.comment_creation_date|date:"SHORT_DATE_FORMAT" }}</p>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+        {% endblock %}
+    {% endblock %}
+
+            <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->
