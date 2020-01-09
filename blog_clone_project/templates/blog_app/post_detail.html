@@ -2,12 +2,24 @@
     {% block head_primary %}{{ post_detail.post_title }}{% endblock %}
     
     {% block head_sub %}
+        {% if post_detail.post_published_date %}
+            {% if post_detail.related_comment_belong.count >= 1 %}
+            {% else %}
+                <p>Be the first who will write a comment here!</p>
+            {% endif %}
+        {% else %}
+            <p>draft post</p>
+        {% endif %}
     {% endblock %}
 
     {% if user.is_authenticated %}
         {% block button_content %}
             <!-- CREATE POST -->
-            <a class="btn btn-outline-dark" href="{% url 'blog_app:add_comment' pk=post_detail.pk %}">Write a comment.</a>
+            {% if post_detail.post_published_date %}
+                <a class="btn btn-outline-dark" href="{% url 'blog_app:add_comment' pk=post_detail.pk %}">Write a comment</a>
+            {% else %}
+                <a class="btn btn-outline-dark" href="{% url 'blog_app:post_publish' pk=post_detail.pk %}">Publish a post</a>
+            {% endif %}
         {% endblock %}
     {% endif %}
 
@@ -18,7 +30,11 @@
 
                 <div class="row">
                     <div class="col-9">
-                        <p>published date: {{ post_detail.post_published_date|date:"Y M d" }}</p>
+                        {% if post_detail.post_published_date %}
+                            <p>published date: {{ post_detail.post_published_date|date:"Y M d" }}</p>
+                        {% else %}
+                            <p>created date: {{ post_detail.post_creation_date|date:"Y M d" }}</p>
+                        {% endif %}
                     </div>
                     {% if user.is_authenticated %}
                         <div class="col-3 ">
@@ -40,7 +56,7 @@
                                 <p>author: {{ comment.comment_author }}</p>
                                 <div class="row">
                                     <div class="col-9">
-                                        <p>published date: {{ comment.comment_creation_date|date:"Y M d" }}</p>
+                                        <p>created date: {{ comment.comment_creation_date|date:"Y M d" }}</p>
                                     </div>
                                     {% if user.is_authenticated %}
                                         <div class="col-3">
@@ -57,7 +73,7 @@
                                 <p>author: {{ comment.comment_author }}</p>
                                 <div class="row">
                                     <div class="col-9">
-                                        <p>published date: {{ comment.comment_creation_date|date:"Y M d" }}</p>
+                                        <p>created date: {{ comment.comment_creation_date|date:"Y M d" }}</p>
                                     </div>
                                     <div class="col-3">
                                         <div class="btn-group btn-group-toggle float-right mr-3">

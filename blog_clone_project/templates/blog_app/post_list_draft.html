@@ -2,10 +2,15 @@
     {% block head_primary %}Draft posts List{% endblock %}
     
     {% block head_sub %}
+        {% if post_list_draft.count >= 1 %}
             <p>Hello {{ user.username }}!</p>
+        {% else %}
+            No drafts at the moment.
+        {% endif %}
     {% endblock %}
     
         {% block button_content %}
+            <a class="btn btn-outline-dark" href="{% url 'blog_app:post_create' %}">Create a post</a>
         {% endblock %}
 
     {% block content %}
@@ -20,16 +25,7 @@
                     </div>
                     <div class="">
                         <p class="group_description_list">author: {{ post.post_author }}</p>
-                        <div class="row">
-                            <div class="col-9">
-                                <p class="group_description_list">created date: {{ post.post_creation_date|date:"Y M d" }}</p>
-                            </div>
-                            <div class="col-3">
-                                <div class="btn-group float-right mr-3">
-                                    <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_publish' pk=post.pk %}">Publish</a>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="group_description_list">created date: {{ post.post_creation_date|date:"Y M d" }}</p>
                     </div>
                 </li>
                 {% endfor %}

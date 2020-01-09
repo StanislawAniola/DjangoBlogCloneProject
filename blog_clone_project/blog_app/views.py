@@ -82,11 +82,11 @@ def comment_add(request, pk):
 
         if comment_form.is_valid():
             comment_to_database = comment_form.save(commit=False)
-            comment_to_database.post_object = post_object
+            comment_to_database.comment_belong = post_object
             comment_to_database.save()
             return redirect('blog_app:post_detail', pk=post_object.pk)
 
-    comment_form = forms.UserPostForm()
+    comment_form = forms.UserCommentForm()
     return render(request, template_name='blog_app/comment_add.html', context={'comment_form': comment_form, 'post_object': post_object})
 
 
