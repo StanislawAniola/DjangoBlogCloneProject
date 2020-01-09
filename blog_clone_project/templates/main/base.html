@@ -20,10 +20,10 @@
                 <a class="py-2 d-none d-md-inline-block" href="{% url 'blog_app:post_list_draft' %}">Drafts</a>
             {% endif %}
             {% if not user.is_authenticated %}
-                <a class="py-2 d-none d-md-inline-block" href="{% url 'register_app:register_user' %}">SignUp</a>
-                <a class="py-2 d-none d-md-inline-block" href="{% url 'login_app:login_user' %}">SignIn</a>
+                <a class="py-2 d-none d-md-inline-block" href="{% url 'register_app:register_user' %}">Sign Up</a>
+                <a class="py-2 d-none d-md-inline-block" href="{% url 'login_app:login_user' %}">Sign In</a>
             {% else %}
-                <a class="py-2 d-none d-md-inline-block" href="{% url 'login_app:logout_user' %}">SignOut</a>
+                <a class="py-2 d-none d-md-inline-block" href="{% url 'login_app:logout_user' %}">Sign Out</a>
             {% endif %}
         </div>
     </nav>

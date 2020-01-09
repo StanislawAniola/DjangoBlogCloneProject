@@ -23,11 +23,11 @@
             <div class="w-25 p-3 text-center text-uppercase">
                 <form action="{% url 'login_app:login_user' %}" method="post">
                     {% csrf_token %}
-                    <label for="username">USERNAME</label>
+                    <label for="username">USERNAME:</label>
                     <input placeholder="username" name="username" type="text" class="form-control">
-                    <label for="password">PASSWORD</label>
+                    <label for="password">PASSWORD:</label>
                     <input placeholder="password" name="password" type="password" class="form-control"><br>
-                    <input type="submit" value="SignIn" class="btn btn-outline-dark btn-block">
+                    <input type="submit" value="Sign In" class="btn btn-outline-dark btn-block">
                 </form>
             </div>
         </div>

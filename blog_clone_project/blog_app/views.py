@@ -45,7 +45,6 @@ class PostUpdateView(UpdateView):
     redirect_field_name = 'blog_app:post_detail'
 
 
-
 class PostDeleteView(DeleteView):
 
     model = models.UserPostModel
@@ -64,10 +63,12 @@ class PostListDraftView(ListView):
     def get_queryset(self):
         return models.UserPostModel.objects.filter(post_published_date=None).order_by('-post_creation_date')
 
+
 def post_publish(request, pk):
     post_object = get_object_or_404(models.UserPostModel, pk=pk)
     post_object.publish_post()
     return redirect('blog_app:post_detail', pk=post_object.pk)
+
 
 #######################################
 #############__COMMENTS__##############

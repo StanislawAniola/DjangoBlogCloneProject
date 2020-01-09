@@ -9,9 +9,11 @@ class UserPostForm(forms.ModelForm):
 
         fields = ['post_author', 'post_title', 'post_text']
 
+
         widgets = {
-            'post_title': forms.TextInput(attrs={'class': 'group-control'}),
-            'post_text': forms.Textarea(attrs={'class': 'group-control'}),
+            'post_author': forms.Select(attrs={'class': 'btn btn-outline-dark dropdown-toggle form-control'}),
+            'post_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'post_text': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
 
@@ -23,6 +25,6 @@ class UserCommentForm(forms.ModelForm):
         fields = ['comment_author', 'comment_text']
 
         widgets = {
-            'comment_author': forms.TextInput(attrs={'class': 'group-control'}),
-            'comment_text': forms.Textarea(attrs={'class': 'group-control'}),
+            'comment_author': forms.TextInput(attrs={'class': 'form-control'}),
+            'comment_text': forms.Textarea(attrs={'class': 'form-control'}),
         }

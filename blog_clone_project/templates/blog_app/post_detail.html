@@ -48,6 +48,10 @@
           </div>
 
         {% block group_content %}
+                {% if post_detail.related_comment_belong.count >= 1 %}
+                    <h5 class="text-center">COMMENTS:</h5>
+                {% endif %}
+
                 <ol class="list-group list-group-flush">
                     {% for comment in post_detail.related_comment_belong.all %}
                         {% if comment.comment_approved %}

@@ -10,7 +10,9 @@
     {% endblock %}
     
         {% block button_content %}
-            <a class="btn btn-outline-dark" href="{% url 'blog_app:post_create' %}">Create a post</a>
+            <div class="button-anime">
+                <a class="btn btn-outline-dark button-anime" href="{% url 'blog_app:post_create' %}">Create a post</a>
+            </div>
         {% endblock %}
 
     {% block content %}

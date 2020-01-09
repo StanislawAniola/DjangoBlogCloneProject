@@ -63,6 +63,11 @@ html body {
   display: block;
 }
 
+.form-control{
+border-style: solid !important;
+border-color: black !important;
+}
+
 .group_link_list_box_major:hover{
   animation-name: moveInLeft;
   transition: all 0.2s;
@@ -159,6 +164,10 @@ html body {
     color: white !important;
     opacity: 0.9;
     transition: 0.6s;
+  }
+
+  .button-anime{
+    animation-name: moveInLeft;
   }
 
   /* ANIMATIONS */

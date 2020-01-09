@@ -13,7 +13,7 @@
         {% block button_content %}
             {% if user.is_authenticated %}
                 <!-- CREATE POST -->
-                <a class="btn btn-outline-dark anime" href="{% url 'blog_app:post_create' %}">Create a post</a>
+                <a class="btn btn-outline-dark button-anime" href="{% url 'blog_app:post_create' %}">Create a post</a>
             {% endif %}
         {% endblock %}
     {% endif %}
