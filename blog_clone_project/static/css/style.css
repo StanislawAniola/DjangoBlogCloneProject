@@ -23,6 +23,7 @@ html body {
     /* font-family: 'Monoton', cursive; */
 }
 
+
 .group_list_element{
   background-color: rgba(255, 255, 255, 0) !important;
   -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
@@ -136,6 +137,10 @@ html body {
 
   /* BUTTONS */
 
+  .btn-group-outline{
+    color: black !important;
+    border: 1px solid rgb(0, 0, 0) !important;
+  }
 
   .btn:link, 
   .btn:visited {
@@ -144,9 +149,9 @@ html body {
     color: black;
     padding: 10px 30px;
     display: inline-block;
-
     -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
     backdrop-filter: saturate(10%) blur(1.25em) !important;
+    animation: moveInRight !important;
   }
 
   .btn-outline-dark:hover{
@@ -155,7 +160,6 @@ html body {
     opacity: 0.9;
     transition: 0.6s;
   }
-
 
   /* ANIMATIONS */
 @keyframes moveInLeft {

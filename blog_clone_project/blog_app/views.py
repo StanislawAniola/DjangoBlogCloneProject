@@ -65,7 +65,7 @@ class PostListDraftView(ListView):
 def post_publish(request, pk):
     post_object = get_object_or_404(models.UserPostModel, pk=pk)
     post_object.publish_post()
-    return redirect(reverse('blog_app:post_detail'), pk=models.UserPostModel.pk)
+    return redirect('blog_app:post_detail', pk=models.UserPostModel.pk)
 
 #######################################
 #############__COMMENTS__##############
@@ -92,12 +92,12 @@ def comment_approve(request, pk):
 
     comment_object = get_object_or_404(models.UserCommentModel, pk=pk)
     comment_object.comment_approve()
-    return redirect('blog_app:comment_detail', pk=comment_object.pk)
+    return redirect('blog_app:post_detail', pk=comment_object.comment_belong.pk)
 
 
 def comment_delete(request, pk):
 
-    post_pk = models.UserPostModel.pk
     comment_object = get_object_or_404(models.UserCommentModel, pk=pk)
+    post_pk = comment_object.comment_belong.pk
     comment_object.delete()
-    return redirect(reverse('blog_app:post_detail'), pk=post_pk)
+    return redirect('blog_app:post_detail', pk=post_pk)

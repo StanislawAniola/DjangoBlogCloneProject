@@ -16,6 +16,6 @@ urlpatterns = [
 
     url(r'^post_list/(?P<pk>\d+)/add_comment/$', views.comment_add, name='add_comment'),
     url(r'^post_list/(?P<pk>\d+)/comment_approve/$', views.comment_approve, name='comment_approve'),
-    url(r'^post_list/(?P<pk>\d+/comment_delete/$)', views.comment_delete, name='comment_delete'),
+    url(r'^post_list/(?P<pk>\d+)/comment_delete/$', views.comment_delete, name='comment_delete'),
 
 ]

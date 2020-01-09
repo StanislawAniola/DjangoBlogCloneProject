@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+    {% block head_primary %}Login Page{% endblock %}
+
+    {% block head_sub %}
+        {% if user.is_authenticated %}
+            <p>Welcome {{ user.username }}</p>
+        {% else %}
+            fill up the form
+        {% endif %}
+    {% endblock %}
+
+    {% if user.is_authenticated %}
+        {% block button_content %}
+            {% if user.is_authenticated %}
+                <!-- CREATE POST -->
+            {% endif %}
+        {% endblock %}
+    {% endif %}
+
+    {% block content %}
+        {% block group_content %}
+        <div class="d-flex justify-content-center">
+            <div class="w-25 p-3 text-center text-uppercase">
+                <form action="{% url 'login_app:login_user' %}" method="post">
+                    {% csrf_token %}
+                    <label for="username">USERNAME</label>
+                    <input placeholder="username" name="username" type="text" class="form-control">
+                    <label for="password">PASSWORD</label>
+                    <input placeholder="password" name="password" type="password" class="form-control"><br>
+                    <input type="submit" value="SignIn" class="btn btn-outline-dark btn-block">
+                </form>
+            </div>
+        </div>
+        {% endblock %}
+    {% endblock %}
+
+            <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->

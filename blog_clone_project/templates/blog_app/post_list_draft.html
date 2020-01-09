@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
     {% block head_primary %}Posts List{% endblock %}
-    
+
     {% block head_sub %}
         {% if user.is_authenticated %}
             <p>Welcome back {{ user.username }}</p>
@@ -8,7 +8,7 @@
             List of all posts
         {% endif %}
     {% endblock %}
-    
+
     {% if user.is_authenticated %}
         {% block button_content %}
             {% if user.is_authenticated %}

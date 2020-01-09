@@ -19,13 +19,14 @@ def login_user(request):
 
         if login_user_data:
             login(request, login_user_data)
-            return HttpResponseRedirect(reverse('index_view'))
+            return HttpResponseRedirect(reverse('blog_app:post_list'))
         else:
             return HttpResponse('Invalid personal data supplied')
 
-    return render(request, template_name='login_app/login_user.html')
+    return render(request, template_name='login_app/login_app.html')
 
 
+@login_required
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('index_view'))

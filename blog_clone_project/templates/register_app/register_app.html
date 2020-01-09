@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+    {% block head_primary %}<p>Register Page</p>{% endblock %}
+
+    {% block head_sub %}
+        {% if registered %}
+            <p>Go explore our site!</p>
+        {% else %}
+            <p>All you need is...</p>
+        {% endif %}
+    {% endblock %}
+
+    {% block content %}
+        {% block group_content %}
+        <div class="d-flex justify-content-center mt-n5">
+            <div class="w-25 p-3 text-center text-uppercase">
+                {% if registered %}
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ user_form.as_p }}
+                        <input type="submit" value="SignUp" class="btn btn-outline-dark btn-block">
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endblock %}
+    {% endblock %}
+
+            <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->

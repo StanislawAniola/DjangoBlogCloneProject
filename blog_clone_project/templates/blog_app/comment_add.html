@@ -1,13 +1,13 @@
 {% extends 'main/base.html' %}
-    {% block head_primary %}{{ post_detail.post_title }}{% endblock %}
-    
+    {% block head_primary %}Write a comment to{% endblock %}
+
     {% block head_sub %}
     {% endblock %}
 
     {% if user.is_authenticated %}
         {% block button_content %}
             <!-- CREATE POST -->
-            <a class="btn btn-outline-dark" href="{% url 'blog_app:add_comment' pk=post_detail.pk %}">Write a comment.</a>
+            <a class="btn btn-outline-dark" href="#">Approve!</a>
         {% endblock %}
     {% endif %}
 
@@ -20,14 +20,12 @@
                     <div class="col-9">
                         <p>published date: {{ post_detail.post_published_date|date:"Y M d" }}</p>
                     </div>
-                    {% if user.is_authenticated %}
-                        <div class="col-3 ">
-                            <div class="btn-group float-right mr-3">
-                                <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_update' pk=post_detail.pk %}">Update</a>
-                                <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_delete' pk=post_detail.pk %}">Delete</a>
-                            </div>
+                    <div class="col-3 ">
+                        <div class="btn-group float-right mr-3">
+                            <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_update' pk=post_detail.pk %}">Update</a>
+                            <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_delete' pk=post_detail.pk %}">Delete</a>
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
           </div>
 

@@ -24,7 +24,7 @@ class UserPostModel(models.Model):
         return self.related_comment_belong.filter(comment_approved=True)
 
     def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
+        return reverse('blog_app:post_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.post_title
@@ -41,7 +41,7 @@ class UserCommentModel(models.Model):
     comment_approved = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('post_list')
+        return reverse('blog_app:post_list')
 
     def comment_approve(self):
         self.comment_approved = True
