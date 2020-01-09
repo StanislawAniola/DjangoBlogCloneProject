@@ -16,7 +16,7 @@
         <div class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-none d-md-inline-block" href="{% url 'index_view' %}">About</a>
             <a class="py-2 d-none d-md-inline-block" href="{% url 'blog_app:post_list' %}">Posts</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+            <a class="py-2 d-none d-md-inline-block" href="{% url 'blog_app:post_list_draft' %}">Drafts</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
             {% if not user.is_authenticated %}
                 <a class="py-2 d-none d-md-inline-block" href="{% url 'register_app:register_user' %}">SignUp</a>

@@ -1,40 +1,37 @@
 {% extends 'main/base.html' %}
-    {% block head_primary %}Posts List{% endblock %}
-
+    {% block head_primary %}Draft posts List{% endblock %}
+    
     {% block head_sub %}
-        {% if user.is_authenticated %}
-            <p>Welcome back {{ user.username }}</p>
-        {% else %}
-            List of all posts
-        {% endif %}
+            <p>Hello {{ user.username }}!</p>
     {% endblock %}
-
-    {% if user.is_authenticated %}
+    
         {% block button_content %}
-            {% if user.is_authenticated %}
-                <!-- CREATE POST -->
-                <a class="btn btn-outline-dark anime" href="{% url 'blog_app:post_create' %}">Create post</a>
-            {% endif %}
         {% endblock %}
-    {% endif %}
 
     {% block content %}
         {% block group_content %}
             <ol class="list-group list-group-flush">
-                {% for post in post_list %}
-                    <li class="list-group-item shadow-sm group_list_element">
-                        <div class="group_link_list_box">
-                            <div class="group_link_list_box_major">
-                                <a class="group_link_list" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
+                {% for post in post_list_draft %}
+                <li class="list-group-item shadow-sm group_list_element">
+                    <div class="group_link_list_box">
+                        <div class="group_link_list_box_major">
+                            <a class="group_link_list" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="group_description_list">author: {{ post.post_author }}</p>
+                        <div class="row">
+                            <div class="col-9">
+                                <p class="group_description_list">created date: {{ post.post_creation_date|date:"Y M d" }}</p>
+                            </div>
+                            <div class="col-3">
+                                <div class="btn-group float-right mr-3">
+                                    <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_publish' pk=post.pk %}">Publish</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="">
-                            comment{{ post.related_comment_belong.count|pluralize }}:
-                            <span>{{ post.related_comment_belong.count }}</span>
-                            <p class="group_description_list">author: {{ post.post_author }}</p>
-                            <p class="group_description_list">published date: {{ post.post_published_date|date:"Y M d" }}</p>
-                        </div>
-                    </li>
+                    </div>
+                </li>
                 {% endfor %}
             </ol>
         {% endblock %}
