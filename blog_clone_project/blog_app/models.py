@@ -10,8 +10,8 @@ from django.urls import reverse
 class UserPostModel(models.Model):
 
     post_author = models.ForeignKey(User, on_delete=models.CASCADE)
-    post_title = models.CharField(max_length=264)
-    post_text = models.TextField(max_length=264)
+    post_title = models.CharField(max_length=200)
+    post_text = models.TextField(max_length=600)
 
     post_creation_date = models.DateTimeField(default=timezone.now)
     post_published_date = models.DateTimeField(blank=True, null=True)
@@ -34,8 +34,8 @@ class UserCommentModel(models.Model):
 
     comment_belong = models.ForeignKey(UserPostModel, related_name='related_comment_belong', on_delete=models.CASCADE)
 
-    comment_author = models.CharField(max_length=264)
-    comment_text = models.TextField(max_length=264)
+    comment_author = models.CharField(max_length=200)
+    comment_text = models.TextField(max_length=600)
 
     comment_creation_date = models.DateTimeField(default=timezone.now)
     comment_approved = models.BooleanField(default=False)

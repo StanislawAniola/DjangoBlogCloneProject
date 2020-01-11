@@ -27,7 +27,7 @@ class PostDetailView(DetailView):
     template_name = 'blog_app/post_detail.html'
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
 
     form_class = forms.UserPostForm
     template_name = 'blog_app/post_create_update.html'
@@ -35,7 +35,7 @@ class PostCreateView(CreateView):
     redirect_field_name = 'blog_app:post_detail'
 
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
 
     model = models.UserPostModel
 
@@ -45,7 +45,7 @@ class PostUpdateView(UpdateView):
     redirect_field_name = 'blog_app:post_detail'
 
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
 
     model = models.UserPostModel
     context_object_name = 'post_delete'
@@ -54,7 +54,7 @@ class PostDeleteView(DeleteView):
     success_url = reverse_lazy('blog_app:post_list')
 
 
-class PostListDraftView(ListView):
+class PostListDraftView(LoginRequiredMixin, ListView):
 
     model = models.UserPostModel
     context_object_name = 'post_list_draft'
@@ -63,7 +63,7 @@ class PostListDraftView(ListView):
     def get_queryset(self):
         return models.UserPostModel.objects.filter(post_published_date=None).order_by('-post_creation_date')
 
-
+@login_required
 def post_publish(request, pk):
     post_object = get_object_or_404(models.UserPostModel, pk=pk)
     post_object.publish_post()
@@ -90,14 +90,14 @@ def comment_add(request, pk):
     comment_form = forms.UserCommentForm()
     return render(request, template_name='blog_app/comment_add.html', context={'comment_form': comment_form, 'post_object': post_object})
 
-
+@login_required
 def comment_approve(request, pk):
 
     comment_object = get_object_or_404(models.UserCommentModel, pk=pk)
     comment_object.comment_approve()
     return redirect('blog_app:post_detail', pk=comment_object.comment_belong.pk)
 
-
+@login_required
 def comment_delete(request, pk):
 
     comment_object = get_object_or_404(models.UserCommentModel, pk=pk)

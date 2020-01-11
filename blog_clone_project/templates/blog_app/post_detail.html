@@ -48,7 +48,7 @@
           </div>
 
         {% block group_content %}
-                {% if post_detail.related_comment_belong.count >= 1 %}
+                {% if post_detail.related_comment_belong.count >= 1 and comment.comment_approved %}
                     <h5 class="text-center">COMMENTS:</h5>
                 {% endif %}
 
