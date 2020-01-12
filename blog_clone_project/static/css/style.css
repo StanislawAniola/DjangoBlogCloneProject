@@ -19,12 +19,11 @@ html body {
   background-position: top 4em left 3em;
   }
   
-.position-relative{
-    /* font-family: 'Monoton', cursive; */
+.about-me-box{
 }
 
 
-.group_list_element{
+.group-list-element{
   background-color: rgba(255, 255, 255, 0) !important;
   -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
   backdrop-filter: saturate(10%) blur(1.25em) !important;
@@ -39,27 +38,24 @@ html body {
 
 
 
-.group_description_list{
+.group-description{
   font-size: 1em;
   letter-spacing: 0.15em;
 }
 
-.group_description_list_div{
-}
-
-.group_link_list:link,
-.group_link_list:visited{
+.group-link:link,
+.group-link:visited{
   text-decoration: none;
   text-transform: uppercase;
   color: black;
   font-size: 1.5em;
 }
 
-.group_link_list:hover{
+.group-link:hover{
   display: block;
 }
 
-.group_link_list:active{
+.group-link:active{
   display: block;
 }
 
@@ -68,7 +64,7 @@ border-style: solid !important;
 border-color: black !important;
 }
 
-.group_link_list_box_major:hover{
+.group-link-list-box-major:hover{
   animation-name: moveInLeft;
   transition: all 0.2s;
   animation-delay: 0.1s;
@@ -76,36 +72,26 @@ border-color: black !important;
   box-sizing: content-box;
 }
 
-.group_link_list_box:hover{
+.group-link-list-box:hover{
 
   animation-name: LetterSpacetBlink;
   box-sizing: content-box;
   text-align: center;
 
   animation-timing-function: ease-in-out;
-  animation-duration: 0.4s;
+  animation-duration: 0.8s;
   animation-delay: 0s;
-  transition: all 0.4s;
+  transition: all 0.9s;
 
   letter-spacing: 1em;
 }
 
 .overflow-hidden { overflow: hidden; }
-.header {
-  }
 
 .group_content{
   box-sizing: content-box;
   display: block;
   padding: 1.78em;
-}
-
-.text-box {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  text-align: center;
 }
 
 .heading-primary {
@@ -138,14 +124,11 @@ border-color: black !important;
   animation-duration: 1.5s;
   animation-delay: 0.1s;
   animation-timing-function: ease-in-out;
+
+  margin-top: 1.4em;
   }
 
   /* BUTTONS */
-
-  .btn-group-outline{
-    color: black !important;
-    border: 1px solid rgb(0, 0, 0) !important;
-  }
 
   .btn:link, 
   .btn:visited {
@@ -167,8 +150,13 @@ border-color: black !important;
   }
 
   .button-anime{
-    animation-name: moveInLeft;
+    animation-name: moveInUp;
+    animation-duration: 1s;
+    animation-delay: 0.4s;
+    animation-timing-function: ease-in-out;
   }
+
+/* FOOTER */
 
   .footer{
     text-decoration: none;
@@ -222,6 +210,19 @@ border-color: black !important;
   }
 
   /* ANIMATIONS */
+
+@keyframes moveInUp{
+  0%{
+    opacity: 0;
+    transform: translateY(2em);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0em);
+  }
+}
+
 @keyframes moveInLeft {
   0% {
     opacity: 0;

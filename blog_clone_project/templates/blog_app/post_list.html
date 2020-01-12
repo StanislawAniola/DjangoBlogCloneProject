@@ -13,7 +13,9 @@
         {% block button_content %}
             {% if user.is_authenticated %}
                 <!-- CREATE POST -->
-                <a class="btn btn-outline-dark button-anime" href="{% url 'blog_app:post_create' %}">Create a post</a>
+                <div class="button-anime">
+                    <a class="btn btn-outline-dark" href="{% url 'blog_app:post_create' %}">Create a post</a>
+                </div>
             {% endif %}
         {% endblock %}
     {% endif %}
@@ -22,18 +24,16 @@
         {% block group_content %}
             <ol class="list-group list-group-flush">
                 {% for post in post_list %}
-                    <li class="list-group-item shadow-sm group_list_element">
-                        <div class="group_link_list_box">
-                            <div class="group_link_list_box_major">
-                                <a class="group_link_list" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
+                    <li class="list-group-item shadow-sm group-list-element">
+                        <div class="group-link-list-box">
+                            <div class="group-link-list-box-major">
+                                <a class="group-link" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
                             </div>
                         </div>
-                        <div class="">
-                            comment{{ post.related_comment_belong.count|pluralize }}:
-                            <span>{{ post.related_comment_belong.count }}</span>
-                            <p class="group_description_list">author: {{ post.post_author }}</p>
-                            <p class="group_description_list">published date: {{ post.post_published_date|date:"Y M d" }}</p>
-                        </div>
+                        comment{{ post.related_comment_belong.count|pluralize }}:
+                        <span>{{ post.related_comment_belong.count }}</span>
+                        <p class="group-description">author: {{ post.post_author }}</p>
+                        <p class="group-description">published date: {{ post.post_published_date|date:"Y M d" }}</p>
                     </li>
                 {% endfor %}
             </ol>
