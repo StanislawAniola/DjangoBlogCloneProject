@@ -63,7 +63,6 @@ class PostListDraftView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return models.UserPostModel.objects.filter(post_published_date=None).order_by('-post_creation_date')
 
-
 @login_required
 def post_publish(request, pk):
     post_object = get_object_or_404(models.UserPostModel, pk=pk)
@@ -91,14 +90,12 @@ def comment_add(request, pk):
     comment_form = forms.UserCommentForm()
     return render(request, template_name='blog_app/comment_add.html', context={'comment_form': comment_form, 'post_object': post_object})
 
-
 @login_required
 def comment_approve(request, pk):
 
     comment_object = get_object_or_404(models.UserCommentModel, pk=pk)
     comment_object.comment_approve()
     return redirect('blog_app:post_detail', pk=comment_object.comment_belong.pk)
-
 
 @login_required
 def comment_delete(request, pk):

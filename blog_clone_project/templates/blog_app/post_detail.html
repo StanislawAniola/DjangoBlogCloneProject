@@ -16,15 +16,19 @@
         {% block button_content %}
             <!-- CREATE POST -->
             {% if post_detail.post_published_date %}
-                <a class="btn btn-outline-dark" href="{% url 'blog_app:add_comment' pk=post_detail.pk %}">Write a comment</a>
+                <div class="button-anime">
+                    <a class="btn btn-outline-dark" href="{% url 'blog_app:add_comment' pk=post_detail.pk %}">Write a comment</a>
+                </div>
             {% else %}
-                <a class="btn btn-outline-dark" href="{% url 'blog_app:post_publish' pk=post_detail.pk %}">Publish a post</a>
-            {% endif %}
+                <div class="button-anime">
+                    <a class="btn btn-outline-dark" href="{% url 'blog_app:post_publish' pk=post_detail.pk %}">Publish a post</a>
+                </div>
+                {% endif %}
         {% endblock %}
     {% endif %}
 
     {% block content %}
-          <div class="group_list_element p-3 mb-5 rounded shadow-lg">
+          <div class="group-list-element p-3 mb-5 rounded shadow-lg">
               <p class="lead">{{ post_detail.post_text }}</p>
                 <p>author: {{ post_detail.post_author }}</p>
 
@@ -48,15 +52,17 @@
           </div>
 
         {% block group_content %}
-                {% if post_detail.related_comment_belong.count >= 1 %}
-                    <h5 class="text-center">COMMENTS:</h5>
-                {% endif %}
+                {% for comment in post_detail.related_comment_belong.all %}
+                    {% if comment.comment_approved %}
+                        <h5 class="text-center">COMMENTS:</h5>
+                    {% endif %}
+                {% endfor %}
 
                 <ol class="list-group list-group-flush">
                     {% for comment in post_detail.related_comment_belong.all %}
                         {% if comment.comment_approved %}
-                            <li class="list-group-item shadow-sm p-2 mb-2 group_list_element">
-                                <p  class="group_description_list">{{ comment.comment_text }}</p>
+                            <li class="list-group-item shadow-sm p-2 mb-2 group-list-element">
+                                <p  class="group-description">{{ comment.comment_text }}</p>
                                 <p>author: {{ comment.comment_author }}</p>
                                 <div class="row">
                                     <div class="col-9">
@@ -72,8 +78,8 @@
                                 </div>
                             </li>
                         {% elif user.is_authenticated %}
-                            <li class="list-group-item shadow-sm p-2 mb-2 group_list_element">
-                                <p  class="group_description_list">{{ comment.comment_text }}</p>
+                            <li class="list-group-item shadow-sm p-2 mb-2 group-list-element">
+                                <p  class="group-description">{{ comment.comment_text }}</p>
                                 <p>author: {{ comment.comment_author }}</p>
                                 <div class="row">
                                     <div class="col-9">

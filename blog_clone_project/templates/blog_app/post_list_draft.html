@@ -19,15 +19,15 @@
         {% block group_content %}
             <ol class="list-group list-group-flush">
                 {% for post in post_list_draft %}
-                <li class="list-group-item shadow-sm group_list_element">
-                    <div class="group_link_list_box">
-                        <div class="group_link_list_box_major">
-                            <a class="group_link_list" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
+                <li class="list-group-item shadow-sm group-list-element">
+                    <div class="group-link-list-box">
+                        <div class="group-link-list-box-major">
+                            <a class="group-link" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
                         </div>
                     </div>
                     <div class="">
-                        <p class="group_description_list">author: {{ post.post_author }}</p>
-                        <p class="group_description_list">created date: {{ post.post_creation_date|date:"Y M d" }}</p>
+                        <p class="group-description">author: {{ post.post_author }}</p>
+                        <p class="group-description">created date: {{ post.post_creation_date|date:"Y M d" }}</p>
                     </div>
                 </li>
                 {% endfor %}
