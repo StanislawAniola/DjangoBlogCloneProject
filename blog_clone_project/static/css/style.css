@@ -155,7 +155,37 @@ border-color: black !important;
     animation-delay: 0.4s;
     animation-timing-function: ease-in-out;
   }
+/* NAVIGATION LIST */
+  .navigation-list{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, 50%);
+  }
 
+  .navigation-item{
+    margin: 1em;
+  }
+
+  .navigation-link:link,
+  .navigation-link:visited{
+    display: inline-block;
+    font-size: 2em;
+    font-weight: 300;
+    padding: 0.2em 2em;
+    text-decoration: none;
+    color: black;
+
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, black 50%);
+    background-size: 240%;
+    transition: all 0.4s;
+  }
+
+  .navigation-link:hover,
+  .navigation-active{
+    background-position: 100%;
+    color: white;
+  }
 /* FOOTER */
 
   .footer{
@@ -166,6 +196,7 @@ border-color: black !important;
     display: inline-block;
     backdrop-filter: saturate(10%) blur(.9em) !important;
     font-size: 0.8rem;
+    position: fixed;
   }
 
   .footer-navigation{
