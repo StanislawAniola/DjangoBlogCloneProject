@@ -104,3 +104,7 @@ def comment_delete(request, pk):
     post_pk = comment_object.comment_belong.pk
     comment_object.delete()
     return redirect('blog_app:post_detail', pk=post_pk)
+
+
+def test(request):
+    return render(request, template_name='blog_app/test.html')

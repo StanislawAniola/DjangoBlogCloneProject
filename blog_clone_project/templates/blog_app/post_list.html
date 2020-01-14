@@ -25,29 +25,23 @@
             <ol class="list-group list-group-flush">
                 {% for post in post_list %}
                     <li class="list-group-item shadow-sm group-list-element">
-                        <div class="group-link-list-box">
-                            <div class="group-link-list-box-major">
-                                <a class="group-link" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
+                        <div class="d-md-flex flex-md-equal w-100">
+                            <div class="overflow-hidden">
+                                <div class="group-link-list-box">
+                                    <div class="group-link-list-box-major">
+                                        <a class="group-link" href="{% url 'blog_app:post_detail' pk=post.pk %}">{{ post.post_title }}</a>
+                                    </div>
+                                </div>
+                                comment{{ post.related_comment_belong.count|pluralize }}:
+                                <span>{{ post.related_comment_belong.count }}</span>
+                                <p class="group-description">author: {{ post.post_author }}</p>
+                                <p class="group-description">published date: {{ post.post_published_date|date:"Y M d" }}</p>
                             </div>
                         </div>
-                        comment{{ post.related_comment_belong.count|pluralize }}:
-                        <span>{{ post.related_comment_belong.count }}</span>
-                        <p class="group-description">author: {{ post.post_author }}</p>
-                        <p class="group-description">published date: {{ post.post_published_date|date:"Y M d" }}</p>
                     </li>
                 {% endfor %}
             </ol>
         {% endblock %}
-        <div class="navigation">
-            <div class="navigation-background"></div>
-            <nav class="navigation-nav">
-                <ul class="navigation-list">
-                    <li class="navigation-item"><a href="#" class="navigation-link">About</a></li>
-                    <li class="navigation-item"><a href="#" class="navigation-link">What</a></li>
-                    <li class="navigation-item"><a href="#" class="navigation-link">How</a></li>
-                </ul>
-            </nav>
-        </div>
     {% endblock %}
 
             <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->

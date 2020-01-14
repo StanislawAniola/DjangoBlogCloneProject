@@ -28,28 +28,32 @@
     {% endif %}
 
     {% block content %}
-          <div class="group-list-element p-3 mb-5 rounded shadow-lg">
-              <p class="lead">{{ post_detail.post_text }}</p>
-                <p>author: {{ post_detail.post_author }}</p>
+        <div class="d-md-flex flex-md-equal w-100">
+            <div class="overflow-hidden">
+                <div class="group-list-element p-3 mb-5 rounded shadow-lg">
+                    <p class="lead">{{ post_detail.post_text }}</p>
+                    <p>author: {{ post_detail.post_author }}</p>
 
-                <div class="row">
-                    <div class="col-9">
-                        {% if post_detail.post_published_date %}
-                            <p>published date: {{ post_detail.post_published_date|date:"Y M d" }}</p>
-                        {% else %}
-                            <p>created date: {{ post_detail.post_creation_date|date:"Y M d" }}</p>
+                    <div class="row">
+                        <div class="col-9">
+                            {% if post_detail.post_published_date %}
+                                <p>published date: {{ post_detail.post_published_date|date:"Y M d" }}</p>
+                            {% else %}
+                                <p>created date: {{ post_detail.post_creation_date|date:"Y M d" }}</p>
+                            {% endif %}
+                        </div>
+                        {% if user.is_authenticated %}
+                            <div class="col-3 ">
+                                <div class="btn-group float-right mr-3">
+                                    <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_update' pk=post_detail.pk %}">Update</a>
+                                    <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_delete' pk=post_detail.pk %}">Delete</a>
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
-                    {% if user.is_authenticated %}
-                        <div class="col-3 ">
-                            <div class="btn-group float-right mr-3">
-                                <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_update' pk=post_detail.pk %}">Update</a>
-                                <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_delete' pk=post_detail.pk %}">Delete</a>
-                            </div>
-                        </div>
-                    {% endif %}
                 </div>
-          </div>
+            </div>
+        </div>
 
         {% block group_content %}
                 {% for comment in post_detail.related_comment_belong.all %}
@@ -62,20 +66,24 @@
                     {% for comment in post_detail.related_comment_belong.all %}
                         {% if comment.comment_approved %}
                             <li class="list-group-item shadow-sm p-2 mb-2 group-list-element">
-                                <p  class="group-description">{{ comment.comment_text }}</p>
-                                <p>author: {{ comment.comment_author }}</p>
-                                <div class="row">
-                                    <div class="col-9">
-                                        <p>created date: {{ comment.comment_creation_date|date:"Y M d" }}</p>
-                                    </div>
-                                    {% if user.is_authenticated %}
-                                        <div class="col-3">
-                                            <div class="btn-group float-right mr-3">
-                                                <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:comment_delete' pk=comment.pk %}">Delete</a>
+                                    <div class="d-md-flex flex-md-equal w-100">
+                                        <div class="overflow-hidden">
+                                            <p  class="group-description">{{ comment.comment_text }}</p>
+                                            <p>author: {{ comment.comment_author }}</p>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <p>created date: {{ comment.comment_creation_date|date:"Y M d" }}</p>
+                                                </div>
+                                                {% if user.is_authenticated %}
+                                                    <div class="col-3">
+                                                        <div class="btn-group float-right mr-3">
+                                                            <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:comment_delete' pk=comment.pk %}">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         </div>
-                                    {% endif %}
-                                </div>
+                                    </div>
                             </li>
                         {% elif user.is_authenticated %}
                             <li class="list-group-item shadow-sm p-2 mb-2 group-list-element">

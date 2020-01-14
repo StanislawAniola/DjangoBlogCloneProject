@@ -22,6 +22,9 @@ html body {
 .about-me-box{
 }
 
+.footer-background{
+  backdrop-filter: saturate(10%) blur(1.25em) !important;
+}
 
 .group-list-element{
   background-color: rgba(255, 255, 255, 0) !important;
@@ -170,11 +173,11 @@ border-color: black !important;
   .navigation-link:link,
   .navigation-link:visited{
     display: inline-block;
-    font-size: 2em;
+    font-size: 0.8rem;
     font-weight: 300;
-    padding: 0.2em 2em;
+    padding: 0.06em 0.4em;
     text-decoration: none;
-    color: black;
+    color: rgba(0, 0, 0, 0.822) !important;
 
     background-image: linear-gradient(120deg, transparent 0%, transparent 50%, black 50%);
     background-size: 240%;
@@ -184,7 +187,7 @@ border-color: black !important;
   .navigation-link:hover,
   .navigation-active{
     background-position: 100%;
-    color: white;
+    color: white !important;
   }
 /* FOOTER */
 
@@ -218,26 +221,12 @@ border-color: black !important;
   }
 
   ion-icon:hover {
-    color: rgba(0, 0, 0, 0.644);
+    color: rgb(0, 0, 0);
   }
 
   .footer-copyright{
     display: inline-block;
     color: rgba(0, 0, 0, 0.726);
-  }
-
-  .footer-copyright-link{
-    display: inline-block;
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    text-transform: uppercase;
-  }
-
-  .footer-copyright-link:hover{
-    display: inline-block;
-    text-decoration: none;
-    font-weight: 700;
-    color: rgb(0, 0, 0);
   }
 
   .footer{
