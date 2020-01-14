@@ -31,7 +31,7 @@
 
     <div class="position-relative overflow-hidden text-center">
         <div class="col-md-10 mx-auto mb-n5 mt-4 heading-primary">
-            <h1 class="display-4 heading-primary-main">{% block head_primary %}{% endblock %}</h1>
+            <h1 class="display-4 heading-primary-main hidden-sm-down">{% block head_primary %}{% endblock %}</h1>
             <h1 class="pb-4 lead  heading-primary-sub">{% block head_sub %}{% endblock %}</h1>
             {% block button_content %}{% endblock %}
         </div>
@@ -55,11 +55,24 @@
             <div class="col">
                 <div class="footer-navigation">
                     <p class="footer-copyright">
-                        Built by <a class="footer-copyright-link" href="https://www.linkedin.com/in/stanislaw-aniola/">Stanisław Anioła</a> in base of <a class="footer-copyright-link" href="https://www.udemy.com/course/python-and-django-full-stack-web-developer-bootcamp/">Jose Portilla</a> Django online course; <a class="footer-copyright-link" href="https://www.udemy.com/course/advanced-css-and-sass/"> Jonas Schmedtmann</a> CSS online course and <a class="footer-copyright-link" href="https://getbootstrap.com/docs/4.4/examples/product/">Bootstrap</a> example page.
+                        Built by <a class="footer-copyright-link navigation-link" href="https://www.linkedin.com/in/stanislaw-aniola/">Stanisław Anioła</a> in base of <a class="footer-copyright-link navigation-link" href="https://www.udemy.com/course/python-and-django-full-stack-web-developer-bootcamp/">Jose Portilla</a> Django online course; <a class="footer-copyright-link navigation-link" href="https://www.udemy.com/course/advanced-css-and-sass/"> Jonas Schmedtmann</a> CSS online course and <a class="footer-copyright-link navigation-link" href="https://getbootstrap.com/docs/4.4/examples/product/">Bootstrap</a> example page.
                     </p>
                 </div>
             </div>
         </div>
     </footer>
+
+<!--
+    <div class="navigation">
+        <div class="navigation-background"></div>
+        <nav class="navigation-nav">
+            <ul class="navigation-list">
+                <li class="navigation-item"><a href="#" class="navigation-link">About</a></li>
+                <li class="navigation-item"><a href="#" class="navigation-link">What</a></li>
+                <li class="navigation-item"><a href="#" class="navigation-link">How</a></li>
+            </ul>
+        </nav>
+    </div>
+-->
 </body>
 </html>
