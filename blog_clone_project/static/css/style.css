@@ -18,9 +18,7 @@ html body {
   background-repeat: no-repeat;
   background-position: top 4em left 3em;
   }
-  
-.about-me-box{
-}
+
 
 .footer-background{
   backdrop-filter: saturate(10%) blur(1.25em) !important;
@@ -28,8 +26,8 @@ html body {
 
 .group-list-element{
   background-color: rgba(255, 255, 255, 0) !important;
-  -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
-  backdrop-filter: saturate(10%) blur(1.25em) !important;
+  -webkit-backdrop-filter: saturate(10%) blur(1.25em) !important;
+  backdrop-filter: saturate(10%) blur(2em) !important;
   margin-bottom: 2em !important;
   border-bottom: none !important;
   border-top: none !important;
@@ -179,7 +177,7 @@ border-color: black !important;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.822) !important;
 
-    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, black 50%);
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.767) 50%);
     background-size: 240%;
     transition: all 0.4s;
   }
