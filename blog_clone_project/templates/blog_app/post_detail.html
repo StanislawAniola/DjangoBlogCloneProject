@@ -65,7 +65,7 @@
                 <ol class="list-group list-group-flush">
                     {% for comment in post_detail.related_comment_belong.all %}
                         {% if comment.comment_approved %}
-                            <li class="list-group-item shadow-sm p-2 mb-2 group-list-element">
+                            <li class="list-group-item p-2 mb-2 group-list-element">
                                     <div class="d-md-flex flex-md-equal w-100">
                                         <div class="overflow-hidden">
                                             <p  class="group-description">{{ comment.comment_text }}</p>
@@ -86,7 +86,7 @@
                                     </div>
                             </li>
                         {% elif user.is_authenticated %}
-                            <li class="list-group-item shadow-sm p-2 mb-2 group-list-element">
+                            <li class="list-group-item p-2 mb-2 group-list-element">
                                 <p  class="group-description">{{ comment.comment_text }}</p>
                                 <p>author: {{ comment.comment_author }}</p>
                                 <div class="row">
