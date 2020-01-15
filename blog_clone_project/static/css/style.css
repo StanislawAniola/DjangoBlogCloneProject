@@ -5,18 +5,18 @@
   box-sizing: border-box; 
 }
 
-html body {
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 400;
+body {
+  font-family: 'IBM Plex Mono', monospace !important;
   font-size: 16px;
   line-height: 1.7;
   color: black;
-
+/*
   height: 80vh;
   background-image: url(../img/Fis_Ikr_crop-cutout.png);
-  background-size: auto;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: top 4em left 3em;
+  */
   }
 
 
