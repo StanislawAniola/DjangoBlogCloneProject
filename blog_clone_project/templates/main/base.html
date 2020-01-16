@@ -17,7 +17,6 @@
 <body>
     <nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-md-inline-block" href="{% url 'blog_app:test' %}">Test</a>
             <a class="py-2 d-md-inline-block" href="{% url 'index_view' %}">About</a>
             <a class="py-2 d-md-inline-block" href="{% url 'blog_app:post_list' %}">Posts</a>
             {% if user.is_authenticated %}
