@@ -147,7 +147,7 @@ border-color: black !important;
     padding: 10px 30px;
     display: inline-block;
     -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
-    backdrop-filter: saturate(10%) blur(1.25em) !important;
+    backdrop-filter: saturate(10%) blur(12em) !important;
     animation: moveInRight !important;
   }
 
