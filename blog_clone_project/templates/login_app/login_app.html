@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+ {% extends 'main/base.html' %}
     {% block head_primary %}Login Page{% endblock %}
 
     {% block head_sub %}
@@ -20,8 +20,8 @@
     {% block content %}
         {% block group_content %}
         <div class="d-flex justify-content-center">
-            <div class="w-25 p-3 text-center text-uppercase">
-                <form action="{% url 'login_app:login_user' %}" method="post">
+            <div class="p-3 text-center text-uppercase form-group">
+                <form action="{% url 'login_app:login_user' %}" method="post" class="form-signin">
                     {% csrf_token %}
                     <label for="username">USERNAME:</label>
                     <input placeholder="username" name="username" type="text" class="form-control">

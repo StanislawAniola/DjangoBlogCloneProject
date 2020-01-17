@@ -9,7 +9,6 @@ class UserPostForm(forms.ModelForm):
 
         fields = ['post_author', 'post_title', 'post_text']
 
-
         widgets = {
             'post_author': forms.Select(attrs={'class': 'btn btn-outline-dark dropdown-toggle form-control'}),
             'post_title': forms.TextInput(attrs={'class': 'form-control'}),
