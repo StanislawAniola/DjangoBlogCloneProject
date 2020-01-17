@@ -28,7 +28,7 @@
     {% endif %}
 
     {% block content %}
-        <div class="d-md-flex flex-md-equal w-100">
+        <div class="d-md-flex flex-md-equal container">
             <div class="overflow-hidden">
                 <div class="group-list-element p-3 mb-5 rounded shadow-lg">
                     <p class="lead">{{ post_detail.post_text }}</p>
@@ -43,8 +43,8 @@
                             {% endif %}
                         </div>
                         {% if user.is_authenticated %}
-                            <div class="col-md-3 col-lg-2">
-                                <div class="btn-group float-right mr-3">
+                            <div class="col-3">
+                                <div class="btn-group btn-group-toggle float-right mr-3">
                                     <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_update' pk=post_detail.pk %}">Update</a>
                                     <a class="btn btn-outline-dark" name="options" href="{% url 'blog_app:post_delete' pk=post_detail.pk %}">Delete</a>
                                 </div>
@@ -62,7 +62,7 @@
                     {% endif %}
                 {% endfor %}
 
-                <ol class="list-group list-group-flush">
+                <ol class="container">
                     {% for comment in post_detail.related_comment_belong.all %}
                         {% if comment.comment_approved %}
                             <li class="list-group-item p-2 mb-2 group-list-element">

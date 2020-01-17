@@ -147,7 +147,7 @@ border-color: black !important;
     padding: 10px 30px;
     display: inline-block;
     -webkit-backdrop-filter: saturate(180%) blur(2.5em) !important;
-    backdrop-filter: saturate(10%) blur(1.25em) !important;
+    backdrop-filter: saturate(10%) blur(12em) !important;
     animation: moveInRight !important;
   }
 
@@ -324,25 +324,3 @@ border-color: black !important;
 
 .overflow-hidden {
   overflow: hidden; }
-
-
-
-  .form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-  }
-  .form-signin .checkbox {
-    font-weight: 400;
-  }
-  .form-signin .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-  }
-  .form-signin .form-control:focus {
-    z-index: 2;
-  }
