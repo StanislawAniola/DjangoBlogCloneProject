@@ -6,6 +6,8 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
+from braces.views import SelectRelatedMixin
+
 from blog_app import models, forms
 # Create your views here.
 
@@ -27,12 +29,20 @@ class PostDetailView(DetailView):
     template_name = 'blog_app/post_detail.html'
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView, SelectRelatedMixin):
 
     form_class = forms.UserPostForm
+    #model = models.UserPostModel
+    #fields = ['post_title', 'post_text']
     template_name = 'blog_app/post_create_update.html'
 
     redirect_field_name = 'blog_app:post_detail'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.post_author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
@@ -61,7 +71,7 @@ class PostListDraftView(LoginRequiredMixin, ListView):
     template_name = 'blog_app/post_list_draft.html'
 
     def get_queryset(self):
-        return models.UserPostModel.objects.filter(post_published_date=None).order_by('-post_creation_date')
+        return models.UserPostModel.objects.filter(post_published_date=None, post_author=self.request.user).order_by('-post_creation_date')
 
 @login_required
 def post_publish(request, pk):

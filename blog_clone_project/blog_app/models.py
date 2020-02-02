@@ -4,6 +4,8 @@ from django.utils import timezone
 
 from django.urls import reverse
 
+from django.contrib.auth import get_user_model
+user_current = get_user_model()
 # Create your models here.
 
 

@@ -17,6 +17,7 @@
         <div class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-md-inline-block" href="{% url 'index_view' %}">About</a>
             <a class="py-2 d-md-inline-block" href="{% url 'blog_app:post_list' %}">Posts</a>
+            <a class="py-2 d-md-inline-block" href="{% url 'group_app:group_list' %}">GroupList</a>
             {% if user.is_authenticated %}
                 <a class="py-2 d-md-inline-block" href="{% url 'blog_app:post_list_draft' %}">Drafts</a>
             {% endif %}

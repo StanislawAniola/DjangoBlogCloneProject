@@ -1,15 +1,20 @@
 {% extends 'main/base.html' %}
-    {% block head_primary %}Write a comment to {{ post_object.post_title }}{% endblock %}
+    {% block head_primary %}
+        {% if form.instance.pk %}
+            <p>Update post</p>
+        {% else %}
+            <p>Create post</p>
+        {% endif %}
+    {% endblock %}
 
     {% block head_sub %}
+        <p>draft</p>
     {% endblock %}
 
     {% if user.is_authenticated %}
         {% block button_content %}
-            {% if user.is_authenticated %}
                 <!-- CREATE POST -->
-            {% endif %}
-        {% endblock %}z
+        {% endblock %}
     {% endif %}
 
     {% block content %}
@@ -18,7 +23,7 @@
             <div class="w-25 p-3 text-center text-uppercase">
                 <form method="post">
                     {% csrf_token %}
-                    {{ comment_form.as_p }}
+                    {{ form.as_p }}
                     <input type="submit" value="Submit" class="btn btn-outline-dark btn-block">
                 </form>
             </div>

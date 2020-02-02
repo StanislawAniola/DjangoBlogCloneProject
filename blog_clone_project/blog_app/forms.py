@@ -7,10 +7,11 @@ class UserPostForm(forms.ModelForm):
     class Meta():
         model = models.UserPostModel
 
-        fields = ['post_author', 'post_title', 'post_text']
+        #fields = ['post_author', 'post_title', 'post_text']
+        fields = ['post_title', 'post_text']
 
         widgets = {
-            'post_author': forms.Select(attrs={'class': 'btn btn-outline-dark dropdown-toggle form-control'}),
+            #'post_author': forms.Select(attrs={'class': 'btn btn-outline-dark dropdown-toggle form-control'}),
             'post_title': forms.TextInput(attrs={'class': 'form-control'}),
             'post_text': forms.Textarea(attrs={'class': 'form-control'}),
         }

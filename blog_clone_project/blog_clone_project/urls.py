@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^blog_app/', include('blog_app.urls', namespace='blog_app')),
     url(r'^register_app/', include('register_app.urls', namespace='register_app')),
     url(r'^login_app/', include('login_app.urls', namespace='login_app')),
+
+    url(r'^group_app/', include('group_app.urls', namespace='group_app')),
 ]
