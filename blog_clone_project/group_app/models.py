@@ -6,14 +6,16 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 user_current = get_user_model()
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 
 class GroupModel(models.Model):
 
-    group_auth = models.ForeignKey(user_current, on_delete=models.CASCADE)
+    group_author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    group_title = models.TextField(max_length=264)
+    group_title = models.CharField(max_length=264)
     group_description = models.TextField(max_length=264)
 
     group_creation_date = models.DateTimeField(default=timezone.now)

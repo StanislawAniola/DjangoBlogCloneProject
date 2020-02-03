@@ -43,6 +43,8 @@ class GroupCreateView(generic.CreateView):
 
 class GroupUpdateView(generic.UpdateView):
 
+    #form_class = forms.GroupForm
+    model = models.GroupModel
     form_class = forms.GroupForm
     template_name = 'group_app/group_create_update.html'
 
@@ -70,7 +72,7 @@ class GroupListDraftView(generic.ListView):
         return models.GroupModel.objects.filter(group_published_date=None, group_author=self.request.user).order_by('-group_creation_date')
 
 
-def post_publish(request):
+def group_publish(request, pk):
 
     group_object = get_object_or_404(models.GroupModel, pk=pk)
     group_object.publish_group()

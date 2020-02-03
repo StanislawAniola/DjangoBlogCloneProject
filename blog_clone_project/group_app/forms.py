@@ -10,5 +10,5 @@ class GroupForm(forms.ModelForm):
 
         widgets = {
             'group_title': forms.TextInput(attrs={'class': 'form-control'}),
-            'group_description': forms.TextInput(attrs={'class': 'form-control'}),
+            'group_description': forms.Textarea(attrs={'class': 'form-control'}),
         }

@@ -1,11 +1,11 @@
 {% extends 'main/base.html' %}
-    {% block head_primary %}Delete {{ post_delete.post_title }}{% endblock %}
+    {% block head_primary %}Delete {{ group_delete.group_title }}{% endblock %}
 
     {% block head_sub %}
-        {% if post_delete.related_comment_belong.count >= 2 %}
-            and {{ post_delete.related_comment_belong.count }} comments
-        {% elif post_delete.related_comment_belong.count >= 1 %}
-            and {{ post_delete.related_comment_belong.count }} comment
+        {% if group_delete.group_published_date.count >= 2 %}
+            and {{ group_delete.group_published_date.count }} posts
+        {% elif post_delete.group_published_date.count >= 1 %}
+            and {{ group_delete.group_published_date.count }} posts
         {% else %}
             no comments.
         {% endif %}
@@ -30,18 +30,18 @@
     {% block content %}
         {% block group_content %}
         <div class="group-list-element p-3 mb-5 rounded shadow-lg">
-            <p class="lead">{{ post_delete.post_text }}</p>
-              <p>author: {{ post_delete.post_author }}</p>
+            <p class="lead">{{ group_delete.group_description }}</p>
+              <p>author: {{ group_delete.group_author }}</p>
 
               <div class="row">
                   <div class="col-9">
-                      {% if post_delete.post_published_date %}
-                        {% if post_delete.related_comment_belong.count %}
-                            comments: {{ post_delete.related_comment_belong.count }}
+                      {% if group_delete.group_published_date %}
+                        {% if group_delete.post_belong_to_group.count %}
+                            posts: {{ group_delete.post_belong_to_group.count }}
                         {% endif %}
-                        <p>published date: {{ post_delete.post_published_date|date:"Y M d" }}</p>
+                        <p>published date: {{ group_delete.group_published_date|date:"Y M d" }}</p>
                       {% else %}
-                          <p>created date: {{ post_delete.post_creation_date|date:"Y M d" }}</p>
+                          <p>created date: {{ group_delete.group_creation_date|date:"Y M d" }}</p>
                       {% endif %}
                   </div>
               </div>

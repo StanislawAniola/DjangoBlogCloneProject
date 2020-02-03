@@ -18,7 +18,7 @@ class PostModel(models.Model):
     post_creation_date = models.DateTimeField(default=timezone.now)
     post_approved = models.BooleanField(default=False)
 
-    def approve_comment(self):
+    def post_approve(self):
         self.post_approved = True
         self.save()
 

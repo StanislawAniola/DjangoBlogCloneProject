@@ -1,0 +1,108 @@
+{% extends 'main/base.html' %}
+    {% block head_primary %}{{ group_detail.group_title }}{% endblock %}
+    
+    {% block head_sub %}
+        {% if group_detail.group_published_date %}
+            {% if group_detail.post_belong_to_group.count >= 1 %}
+            {% else %}
+                <p>Be the first who will write a post here!</p>
+            {% endif %}
+        {% else %}
+            <p>draft post</p>
+        {% endif %}
+    {% endblock %}
+
+    {% if user.is_authenticated %}
+        {% block button_content %}
+            <!-- CREATE POST -->
+            {% if group_detail.group_published_date %}
+                <div class="button-anime">
+                    <a class="btn btn-outline-dark" href="{% url 'group_app:post_app:post_add' pk=group_detail.pk %}">Write a post</a>
+                </div>
+            {% else %}
+                <div class="button-anime">
+                    <a class="btn btn-outline-dark" href="{% url 'group_app:group_publish' pk=group_detail.pk %}">Publish a group</a>
+                </div>
+                {% endif %}
+        {% endblock %}
+    {% endif %}
+
+    {% block content %}
+        <div class="d-md-flex flex-md-equal container">
+            <div class="overflow-hidden">
+                <div class="group-list-element p-3 mb-5 rounded shadow-lg">
+                    <p class="lead">{{ group_detail.group_description }}</p>
+                    <p>author: {{ group_detail.group_author }}</p>
+
+                    <div class="row">
+                        <div class="col-9">
+                            {% if group_detail.group_published_date %}
+                                <p>published date: {{ group_detail.group_published_date|date:"Y M d" }}</p>
+                            {% else %}
+                                <p>created date: {{ group_detail.group_creation_date|date:"Y M d" }}</p>
+                            {% endif %}
+                        </div>
+                        {% if user.is_authenticated and request.user.username == group_detail.group_author.username or request.user.is_superuser %}
+                            <div class="col-3">
+                                <div class="btn-group btn-group-toggle float-right mr-3">
+                                    <a class="btn btn-outline-dark" name="options" href="{% url 'group_app:group_update' pk=group_detail.pk %}">Update</a>
+                                    <a class="btn btn-outline-dark" name="options" href="{% url 'group_app:group_delete' pk=group_detail.pk %}">Delete</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block group_content %}
+                {% if group_detail.view_approved_comment %}
+                    <h5 class="text-center">POSTS:</h5>
+                {% endif %}
+
+                <ol class="container">
+                    {% for post in group_detail.post_belong_to_group.all %}
+                        {% if post.post_approved %}
+                            <li class="list-group-item p-2 mb-2 group-list-element">
+                                    <div class="d-md-flex flex-md-equal w-100">
+                                        <div class="overflow-hidden">
+                                            <p  class="group-description">{{ post.post_text }}</p>
+                                            <p>author: {{ post.post_author }}</p>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <p>created date: {{ post.post_creation_date|date:"Y M d" }}</p>
+                                                </div>
+                                                {% if user.is_authenticated and request.user.username == post.post_belong.group_author.username or request.user.is_superuser %}
+                                                    <div class="col-3">
+                                                        <div class="btn-group float-right mr-3">
+                                                            <a class="btn btn-outline-dark" name="options" href="{% url 'group_app:post_app:post_delete' pk=post.pk %}">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li>
+                        {% elif user.is_authenticated and request.user.username == group_detail.group_author.username or request.user.is_superuser %}
+                            <li class="list-group-item p-2 mb-2 group-list-element">
+                                <p  class="group-description">{{ post.post_text }}</p>
+                                <p>author: {{ post.post_author }}</p>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <p>created date: {{ post.post_creation_date|date:"Y M d" }}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="btn-group btn-group-toggle float-right mr-3">
+                                            <a class="btn btn-outline-dark" name="options" href="{% url 'group_app:post_app:post_publish' pk=post.pk %}">Publish</a>
+                                            <a class="btn btn-outline-dark" name="options" href="{% url 'group_app:post_app:post_delete' pk=post.pk %}">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+        {% endblock %}
+    {% endblock %}
+
+            <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->

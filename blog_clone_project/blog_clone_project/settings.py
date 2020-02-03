@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'login_app',
     'blog_app',
     'group_app',
+    'post_app',
 ]
 
 MIDDLEWARE = [

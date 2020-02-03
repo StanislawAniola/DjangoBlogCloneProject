@@ -14,7 +14,7 @@
             {% if user.is_authenticated %}
                 <!-- CREATE POST -->
                 <div class="button-anime">
-                    <a class="btn btn-outline-dark" href="#">Create a post</a>
+                    <a class="btn btn-outline-dark" href="{% url 'group_app:group_create' %}">Create a group</a>
                 </div>
             {% endif %}
         {% endblock %}
@@ -23,17 +23,23 @@
     {% block content %}
         {% block group_content %}
             <ol class="list-group list-group-flush container">
-                {% for group in group %}
+                {% for group in group_list %}
                     <li class="list-group-item group-list-element">
                         <div class="d-md-flex flex-md-equal w-100">
                             <div class="overflow-hidden">
                                 <div class="group-link-list-box">
                                     <div class="group-link-list-box-major">
-                                        <a class="group-link" href="#">{{ post.group_title }}</a>
+                                        <a class="group-link" href="{% url 'group_app:group_detail' pk=group.pk %}">{{ group.group_title }}</a>
                                     </div>
                                 </div>
-                                comment{{ group.post_belong_to_group.count|pluralize }}:
-                                <span>{{ group.post_belong_to_group.count }}</span>
+
+                                {% if group.view_approved_comment %}
+                                    post{{ group.post_belong_to_group.count|pluralize }}:
+                                    <span>{{ group.post_belong_to_group.count }}</span>
+                                {% else %}
+                                    post: 0
+                                {% endif %}
+
                                 <p class="group-description">author: {{ group.group_author }}</p>
                                 <p class="group-description">published date: {{ group.group_published_date|date:"Y M d" }}</p>
                             </div>

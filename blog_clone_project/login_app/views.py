@@ -19,7 +19,7 @@ def login_user(request):
 
         if login_user_data:
             login(request, login_user_data)
-            return HttpResponseRedirect(reverse('blog_app:post_list'))
+            return HttpResponseRedirect(reverse('group_app:group_list'))
         else:
             return HttpResponse('Invalid personal data supplied')
 
