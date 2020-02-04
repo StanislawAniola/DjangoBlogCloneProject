@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'^$', views.index_view, name='index_view'),
-    url(r'^blog_app/', include('blog_app.urls', namespace='blog_app')),
     url(r'^register_app/', include('register_app.urls', namespace='register_app')),
     url(r'^login_app/', include('login_app.urls', namespace='login_app')),
 
