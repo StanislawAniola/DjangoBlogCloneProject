@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+    {% block head_primary %}Delete {{ group_delete.group_title }}{% endblock %}
+
+    {% block head_sub %}
+        {% if group_delete.group_published_date.count >= 2 %}
+            and {{ group_delete.group_published_date.count }} posts
+        {% elif post_delete.group_published_date.count >= 1 %}
+            and {{ group_delete.group_published_date.count }} posts
+        {% else %}
+            no comments.
+        {% endif %}
+    {% endblock %}
+
+    {% if user.is_authenticated %}
+        {% block button_content %}
+            {% if user.is_authenticated %}
+                <!-- CREATE POST -->
+                <div class="d-flex justify-content-center">
+                    <div class="w-25 p-3 text-center text-uppercase">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete" class="btn btn-outline-dark btn-block">
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
+    {% endif %}
+
+    {% block content %}
+        {% block group_content %}
+        <div class="group-list-element p-3 mb-5 rounded shadow-lg">
+            <p class="lead">{{ group_delete.group_description }}</p>
+              <p>author: {{ group_delete.group_author }}</p>
+
+              <div class="row">
+                  <div class="col-9">
+                      {% if group_delete.group_published_date %}
+                        {% if group_delete.post_belong_to_group.count %}
+                            posts: {{ group_delete.post_belong_to_group.count }}
+                        {% endif %}
+                        <p>published date: {{ group_delete.group_published_date|date:"Y M d" }}</p>
+                      {% else %}
+                          <p>created date: {{ group_delete.group_creation_date|date:"Y M d" }}</p>
+                      {% endif %}
+                  </div>
+              </div>
+        </div>
+        {% endblock %}
+    {% endblock %}
+
+            <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->

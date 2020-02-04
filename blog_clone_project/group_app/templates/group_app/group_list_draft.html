@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+    {% block head_primary %}Draft groups List{% endblock %}
+    
+    {% block head_sub %}
+        {% if group_list_draft.count >= 1 %}
+            <p>Hello {{ user.username }}!</p>
+        {% else %}
+            No drafts at the moment.
+        {% endif %}
+    {% endblock %}
+    
+        {% block button_content %}
+            <div class="button-anime">
+                <a class="btn btn-outline-dark button-anime" href="{% url 'group_app:group_create' %}">Create a group</a>
+            </div>
+        {% endblock %}
+
+    {% block content %}
+        {% block group_content %}
+            <ol class="list-group list-group-flush container">
+                {% for group in group_list_draft %}
+                <li class="list-group-item group-list-element">
+                    <div class="d-md-flex flex-md-equal w-100">
+                        <div class="overflow-hidden">
+                            <div class="group-link-list-box">
+                                <div class="group-link-list-box-major">
+                                    <a class="group-link" href="{% url 'group_app:group_detail' pk=group.pk %}">{{ group.group_title }}</a>
+                                </div>
+                            </div>
+                            <div class="">
+                                <p class="group-description">author: {{ group.group_author }}</p>
+                                <p class="group-description">created date: {{ group.group_creation_date|date:"Y M d" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ol>
+        {% endblock %}
+    {% endblock %}
+
+            <!-- <a href="{% url 'post_app:user_profile' username=user.username %}">@{{ user.username }}</a> -->
