@@ -9,7 +9,7 @@ class PostModelAdmin(admin.ModelAdmin):
     def group_post_count(self, obj):
         return obj.post_belong_to_group.count()
 
-    fields = ['post_author', 'post_belong', 'post_text', 'post_creation_date', 'post_approved']
+    fields = ['post_author', 'post_belong', 'post_text', 'post_creation_date', 'post_approved' ]
 
     search_fields = ['post_belong', 'post_author']
 
