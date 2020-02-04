@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 from django.shortcuts import get_object_or_404, redirect
 
+from django.contrib.auth.decorators import login_required
+
 from group_app import models as gr_models
 from post_app import models as ps_models
 
@@ -29,7 +31,7 @@ def post_add(request, pk):
     return render(request, template_name='post_app/post_add.html', context={'group_object': group_object,
                                                                             'post_form': post_form})
 
-
+@login_required
 def post_publish(request, pk):
 
     post_object = get_object_or_404(ps_models.PostModel, pk=pk)
@@ -38,7 +40,7 @@ def post_publish(request, pk):
 
     return redirect('group_app:group_detail', pk=group_belong_pk)
 
-
+@login_required
 def post_delete(request, pk):
 
     post_object = get_object_or_404(ps_models.PostModel, pk=pk)

@@ -24,6 +24,7 @@
         {% block group_content %}
             <ol class="list-group list-group-flush container">
                 {% for group in group_list %}
+                {% if group.group_published_date %}
                     <li class="list-group-item group-list-element">
                         <div class="d-md-flex flex-md-equal w-100">
                             <div class="overflow-hidden">
@@ -45,6 +46,7 @@
                             </div>
                         </div>
                     </li>
+                {% endif %}
                 {% endfor %}
             </ol>
         {% endblock %}
