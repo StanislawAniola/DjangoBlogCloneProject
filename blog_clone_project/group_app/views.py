@@ -5,6 +5,9 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 from django.utils import timezone
 
 from group_app import models
@@ -27,7 +30,7 @@ class GroupDetailView(generic.DetailView):
     template_name = 'group_app/group_detail.html'
 
 
-class GroupCreateView(generic.CreateView):
+class GroupCreateView(LoginRequiredMixin, generic.CreateView):
 
     form_class = forms.GroupForm
     template_name = 'group_app/group_create_update.html'
@@ -41,7 +44,7 @@ class GroupCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class GroupUpdateView(generic.UpdateView):
+class GroupUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     #form_class = forms.GroupForm
     model = models.GroupModel
@@ -51,7 +54,7 @@ class GroupUpdateView(generic.UpdateView):
     redirect_field_name = 'group_app:group_detail'
 
 
-class GroupDeleteView(generic.DeleteView):
+class GroupDeleteView(LoginRequiredMixin, generic.DeleteView):
 
     model = models.GroupModel
     context_object_name = 'group_delete'
@@ -61,7 +64,7 @@ class GroupDeleteView(generic.DeleteView):
     success_url = reverse_lazy('group_app:group_list')
 
 
-class GroupListDraftView(generic.ListView):
+class GroupListDraftView(LoginRequiredMixin, generic.ListView):
 
     model = models.GroupModel
     context_object_name = 'group_list_draft'
@@ -72,6 +75,7 @@ class GroupListDraftView(generic.ListView):
         return models.GroupModel.objects.filter(group_published_date=None, group_author=self.request.user).order_by('-group_creation_date')
 
 
+@login_required
 def group_publish(request, pk):
 
     group_object = get_object_or_404(models.GroupModel, pk=pk)
